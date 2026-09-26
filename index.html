@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>ClickJet</title>
+  <meta name="description" content="ClickJet — fly, grab coins, dodge meteors and aliens, beat your high score. A pixel art arcade game by Domus Arcis.">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="stage">
+    <canvas id="game" width="320" height="180" aria-label="ClickJet game"></canvas>
+  </main>
+  <div id="rotate" aria-hidden="true">
+    <div class="phone"></div>
+    <p>ROTATE YOUR DEVICE</p>
+  </div>
+  <noscript><p class="noscript">ClickJet needs JavaScript enabled.</p></noscript>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
