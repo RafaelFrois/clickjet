@@ -26,7 +26,10 @@ html = html.replace('<link rel="stylesheet" href="css/style.css">', `<style>${cs
 html = html.replace('<script type="module" src="src/main.js"></script>', () => `<script>${js}</script>`);
 writeFileSync('dist/index.html', html);
 
-for (const f of ['manifest.webmanifest', 'sw.js', 'icons', 'LICENSE']) cpSync(f, `dist/${f}`, { recursive: true });
+for (const f of ['manifest.webmanifest', 'icons', 'LICENSE']) cpSync(f, `dist/${f}`, { recursive: true });
+// unique cache name per build so every deploy refreshes offline players
+const buildId = `${pkg.version}-${Date.now().toString(36)}`;
+writeFileSync('dist/sw.js', readFileSync('sw.js', 'utf8').replace(/clickjet-v[\w.-]+/, `clickjet-${buildId}`));
 if (existsSync('assets')) cpSync('assets', 'dist/assets', { recursive: true });
 const kb = (Buffer.byteLength(html) / 1024).toFixed(1);
 console.log(`dist/index.html  ${kb} KB (single file, works offline and from file://)`);

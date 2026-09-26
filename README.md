@@ -54,8 +54,21 @@ npm install          # só para o esbuild (dev)
 npm run build        # gera dist/index.html (~120 KB) + manifest, ícones, service worker
 ```
 
-Para publicar (GitHub Pages, Netlify, itch.io…), envie a pasta `dist/` (ou a
-raiz do repositório). Em HTTPS o jogo vira um **PWA instalável** (celular e
+### Publicar na Vercel
+
+O repositório já vem configurado (`vercel.json`): a Vercel roda
+`npm install` + `npm run build` e publica a pasta `dist/`.
+
+1. Em [vercel.com/new](https://vercel.com/new), importe o repositório
+   `RafaelFrois/clickjet` (escolha a branch com o jogo, ou faça o merge na `main`).
+2. Deixe *Framework Preset* como **Other** — build e pasta de saída vêm do
+   `vercel.json`, não precisa mudar nada.
+3. Clique em **Deploy**. Cada push gera um novo deploy automaticamente.
+
+Pela linha de comando: `npx vercel` (preview) ou `npx vercel --prod`.
+
+Outros hosts estáticos (GitHub Pages, Netlify, itch.io…): envie a pasta
+`dist/` gerada pelo build. Em HTTPS o jogo vira um **PWA instalável** (celular e
 desktop), abre em tela cheia/paisagem e funciona offline.
 
 ### Logo Domus Arcis
