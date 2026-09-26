@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>sprite preview</title>
+<style>body{background:#000;margin:0}canvas{image-rendering:pixelated;width:1280px;height:720px}</style></head>
+<body><canvas id="c" width="320" height="180"></canvas>
+<script type="module">
+import { buildSprites } from '../src/gfx/sprites.js';
+import { drawText, FONT_M, FONT_S, FONT_B, FONT_LOGO } from '../src/gfx/font.js';
+const s = buildSprites();
+const ctx = document.getElementById('c').getContext('2d');
+ctx.imageSmoothingEnabled = false;
+ctx.fillStyle = '#000'; ctx.fillRect(0,0,320,180);
+let x = 4;
+for (let i = 0; i < 8; i++) { const r = s.rocket.flames[3].frames[i*4]; ctx.drawImage(r, x, 2); x += r.width; }
+x = 4; for (const f of s.rocket.flames) { ctx.drawImage(f.frames[0], x, 34); x += 36; }
+x = 160; for (const c of s.coin) { ctx.drawImage(c, x, 36); x += 10; }
+for (const c of s.rainbowCoin) { ctx.drawImage(c, x, 36); x += 11; }
+x = 4; for (const k of ['idle','blink','angry']) for (const f of s.green[k]) { ctx.drawImage(f, x, 62); x += 22; }
+for (const f of s.purple.idle) { ctx.drawImage(f, x, 62); x += 18; }
+for (const f of s.purple.ghost) { ctx.drawImage(f, x, 62); x += 18; }
+x = 4; for (const size of s.rocks) for (const v of size) { ctx.drawImage(v.frames[0], x, 92); x += v.size; }
+x = 4; for (const sz of s.meteors.fire) { ctx.drawImage(sz[0].frames[4], x, 120); x += sz[0].size; }
+for (const f of s.meteors.rainbow) { ctx.drawImage(f.frames[28], x, 120); x += f.size; }
+ctx.drawImage(s.meteors.superRainbow[0].frames[0], x, 120);
+ctx.drawImage(s.domus, 290, 100);
+ctx.drawImage(s.speakerOn, 250, 100); ctx.drawImage(s.speakerOff, 250, 116);
+ctx.drawImage(s.decor.planets[0], 230, 150);
+drawText(ctx, FONT_M, 'SCORE 0123456789 +10/s x3', 4, 160, '#fff');
+drawText(ctx, FONT_S, 'DOMUS ARCIS NEW HIGH SCORE! +5 x2', 4, 170, '#ff0');
+drawText(ctx, FONT_B, 'GAME OVER', 170, 160, '#f22');
+drawText(ctx, FONT_LOGO, 'CLICKJET', 200, 2, '#fff', {scale: 1});
+document.title = 'ready ' + s.buildMs.toFixed(1);
+</script></body></html>
